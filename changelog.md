@@ -1,8 +1,6 @@
 # Changelog
 
-All notable changes to `LaravelCastMapping` will be documented in this file.
-
 ## Version 1.0
 
 ### Added
-- Everything
+- Cast attributes class to map json columns to entity class.

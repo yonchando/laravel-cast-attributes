@@ -2,20 +2,21 @@
 
 Contributions are welcome and will be fully credited.
 
-Contributions are accepted via Pull Requests on [Github](https://github.com/yonchando/laravel-cast-mapping).
+Contributions are accepted via Pull Requests on [Github](https://github.com/yonchando/laravel-cast-attributes).
 
 # Things you could do
 If you want to contribute but do not know where to start, this list provides some starting points.
 - Add license text
 - Remove rewriteRules.php
-- Set up TravisCI, StyleCI, ScrutinizerCI
 - Write a comprehensive ReadMe
 
 ## Pull Requests
 
-- **Add tests!** - Your patch won't be accepted if it doesn't have tests.
+- **Issue** need to create and branch with issue number.
 
-- **Document any change in behaviour** - Make sure the `readme.md` and any other relevant documentation are kept up-to-date.
+- **Add tests!** — Your patch won't be accepted if it doesn't have tests.
+
+- **Document any change in behaviour** - Make sure the `readme.md` and any other relevant documentation are kept up to date.
 
 - **Consider our release cycle** - We try to follow [SemVer v2.0.0](http://semver.org/). Randomly breaking public APIs is not an option.
 
@@ -23,5 +24,12 @@ If you want to contribute but do not know where to start, this list provides som
 
 - **Send coherent history** - Make sure each individual commit in your pull request is meaningful. If you had to make multiple intermediate commits while developing, please [squash them](http://www.git-scm.com/book/en/v2/Git-Tools-Rewriting-History#Changing-Multiple-Commit-Messages) before submitting.
 
+- **Format code** use Laravel pint to format code before submit.
+
+## Testing
+
+```bash
+composer test
+```
 
 **Happy coding**!
