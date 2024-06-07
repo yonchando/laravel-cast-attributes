@@ -1,8 +1,9 @@
 <?php
 
-namespace Yonchando\CastMapping\Tests\TestModels;
+namespace Yonchando\CastAttributes\Tests\TestModels;
 
 use Illuminate\Database\Eloquent\Model;
+use Yonchando\CastAttributes\Tests\TestModels\Casts\Property;
 
 /**
  * @property Property properties
@@ -13,7 +14,9 @@ class User extends Model
 {
     protected $table = 'users';
 
+    protected $guarded = [];
+
     protected $casts = [
-        'properties' => Property::class
+        'properties' => Property::class,
     ];
 }

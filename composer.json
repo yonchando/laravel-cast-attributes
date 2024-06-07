@@ -1,6 +1,6 @@
 {
-    "name": "yonchando/laravel-cast-mapping",
-    "description": ":package_description",
+    "name": "yonchando/laravel-cast-attirbute",
+    "description": "Laravel model cast json columns to class object",
     "license": "MIT",
     "authors": [
         {
@@ -11,27 +11,34 @@
     ],
     "homepage": "https://github.com/yonchando/laravel-cast-mapping",
     "keywords": [
-        "Laravel",
-        "LaravelCastMapping",
+        "laravel",
+        "laravel cast attribute",
         "laravel casting",
         "cast object",
-        "cast json"
+        "cast json",
+        "laravel json column"
     ],
     "require": {
+        "php": "^8.0",
+        "laravel/framework": "^7.0|8.0|9.0|10|11",
+        "illuminate/container": "^8.12|^9.0|^10.0|^11.0",
+        "illuminate/contracts": "^8.12|^9.0|^10.0|^11.0",
+        "illuminate/database": "^8.12|^9.0|^10.0|^11.0",
         "illuminate/support": "~9"
     },
     "require-dev": {
         "phpunit/phpunit": "~9.0",
-        "orchestra/testbench": "~7"
+        "orchestra/testbench": "~7",
+        "laravel/pint": "^1.16"
     },
     "autoload": {
         "psr-4": {
-            "Yonchando\\CastMapping\\": "src/"
+            "Yonchando\\CastAttributes\\": "CastAttributes/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Yonchando\\CastMapping\\Tests\\": "tests"
+            "Yonchando\\CastAttributes\\Tests\\": "tests"
         }
     },
     "extra": {
@@ -40,8 +47,12 @@
                 "CastMappingServiceProvider"
             ],
             "aliases": {
-                "LaravelCastMapping": "CastMappable"
+                "CastAttributes": "CastAttributes"
             }
         }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "format": "pint ."
     }
 }
