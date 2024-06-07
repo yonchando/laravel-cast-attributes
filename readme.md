@@ -60,7 +60,7 @@ class UserJson extends \Yonchando\CastAttributes\CastAttributes
 ```
 
 **Image**
-> For sub property class you should trait  `CastProperty`
+> For sub property class use trait  `CastProperty`
 
 ```php
 class Image
