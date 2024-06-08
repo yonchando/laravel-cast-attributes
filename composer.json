@@ -1,5 +1,5 @@
 {
-    "name": "yonchando/laravel-cast-attirbutes",
+    "name": "yonchando/laravel-cast-attributes",
     "description": "Laravel model cast json columns to class object",
     "license": "MIT",
     "authors": [
