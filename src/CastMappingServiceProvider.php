@@ -19,22 +19,8 @@ class CastMappingServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-
-    }
-
-    /**
-     * Get the services provided by the provider.
-     */
-    public function provides(): array
-    {
-        return [CastAttributes::class];
-    }
-
-    /**
-     * Console-specific booting.
-     */
-    protected function bootForConsole(): void
-    {
-
+        $this->app->singleton(CastAttributes::class, function () {
+            return new CastAttributes();
+        });
     }
 }

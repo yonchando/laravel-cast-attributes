@@ -20,7 +20,7 @@
     ],
     "require": {
         "php": "^8.0",
-        "laravel/framework": "^7.0|8.0|9.0|10|11",
+        "laravel/framework": "^7.0|^8.0|^9.0|^10.0|^11.0",
         "illuminate/container": "^8.12|^9.0|^10.0|^11.0",
         "illuminate/contracts": "^8.12|^9.0|^10.0|^11.0",
         "illuminate/database": "^8.12|^9.0|^10.0|^11.0",
@@ -33,7 +33,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Yonchando\\CastAttributes\\": "CastAttributes/"
+            "Yonchando\\CastAttributes\\": "src/"
         }
     },
     "autoload-dev": {
@@ -47,7 +47,7 @@
                 "CastMappingServiceProvider"
             ],
             "aliases": {
-                "CastAttributes": "CastAttributes"
+                "CastAttributes": "src"
             }
         }
     },
