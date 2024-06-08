@@ -54,11 +54,10 @@ trait CastProperty
         $reflectionProperties = $this->getReflectionProperties();
 
         foreach ($reflectionProperties as $property) {
-
             $propertyName = $property->getName();
             $value = data_get($data, str($propertyName)->snake()->toString());
 
-            if ($property->getType()->isBuiltin()) {
+            if (is_null($property->getType()) || $property->getType()->isBuiltin()) {
                 $this->setProperty($property, $value);
             } else {
                 $buildClass = call_user_func_array([$property->getType()->getName(), 'create'], [$value]);
@@ -73,7 +72,7 @@ trait CastProperty
 
         foreach ($this->getReflectionProperties() as $property) {
             $propertyName = $property->getName();
-            if ($property->getType()->isBuiltin()) {
+            if (is_null($property->getType()) || $property->getType()?->isBuiltin()) {
                 $properties[str($propertyName)->snake()->toString()] = $this->getProperty($property);
             } else {
                 $properties[str($propertyName)->snake()->toString()] = $property->getValue($this)->toArray();

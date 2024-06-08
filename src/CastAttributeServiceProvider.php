@@ -4,7 +4,7 @@ namespace Yonchando\CastAttributes;
 
 use Illuminate\Support\ServiceProvider;
 
-class CastMappingServiceProvider extends ServiceProvider
+class CastAttributeServiceProvider extends ServiceProvider
 {
     /**
      * Perform post-registration booting of services.
@@ -19,8 +19,6 @@ class CastMappingServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(CastAttributes::class, function () {
-            return new CastAttributes();
-        });
+
     }
 }
