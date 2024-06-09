@@ -10,7 +10,7 @@ Laravel cast attribute is model custom cast json column to Class entity
 Via Composer
 
 ```bash
-composer require yonchando/laravel-cast-attirbutes
+composer require yonchando/laravel-cast-attributes
 ```
 
 ## Usage
@@ -151,13 +151,13 @@ If you discover any security related issues, please email von.chando@gmail.com i
 
 MIT. Please see the [license file](license.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/yonchando/laravel-cast-attirbutes.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/yonchando/laravel-cast-attributes.svg?style=flat-square
 
-[ico-downloads]: https://img.shields.io/packagist/dt/yonchando/laravel-cast-attirbutes.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/yonchando/laravel-cast-attributes.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/yonchando/laravel-cast-attirbutes
+[link-packagist]: https://packagist.org/packages/yonchando/laravel-cast-attributes
 
-[link-downloads]: https://packagist.org/packages/yonchando/laravel-cast-attirbutes
+[link-downloads]: https://packagist.org/packages/yonchando/laravel-cast-attributes
 
 [link-author]: https://github.com/yonchando
 
