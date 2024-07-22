@@ -1,15 +1,16 @@
 <?php
 
 namespace Yonchando\CastAttributes\Traits;
-
 use ReflectionClass;
+use ReflectionNamedType;
 use ReflectionProperty;
+use ReflectionUnionType;
 
 trait CastProperty
 {
     public function __construct(array|object|null $data = null)
     {
-        if (! is_null($data)) {
+        if (!is_null($data)) {
             $this->setReflectionProperties($data);
         }
     }
@@ -21,19 +22,19 @@ trait CastProperty
 
     private function setProperty(ReflectionProperty $property, $value): void
     {
-        $propertyName = $property->getName();
         if ($property->isPrivate()) {
-            call_user_func_array([$this, 'set'.str($propertyName)->ucfirst()], [$value]);
-        } else {
-            $this->$propertyName = $value;
+            throw new \InvalidArgumentException("Property '{$property->getName()}' must be accessible");
         }
+
+        $propertyName = $property->getName();
+        $this->$propertyName = $value;
     }
 
     private function getProperty(ReflectionProperty $property)
     {
         $propertyName = $property->getName();
         if ($property->isPrivate()) {
-            return call_user_func_array([$this, 'get'.str($propertyName)->ucfirst()], []);
+            return call_user_func_array([$this, 'get' . str($propertyName)->ucfirst()], []);
         }
 
         return $property->getValue($this);
@@ -57,12 +58,24 @@ trait CastProperty
             $propertyName = $property->getName();
             $value = data_get($data, str($propertyName)->snake()->toString());
 
-            if (is_null($property->getType()) || $property->getType()->isBuiltin()) {
-                $this->setProperty($property, $value);
+            $this->setPropertyValue($property, $value);
+        }
+    }
+
+    private function setPropertyValue(ReflectionProperty $property, mixed $value): void
+    {
+        $isReflectionName = $property->getType() instanceof ReflectionNamedType;
+        $isReflectionUnionType = $property->getType() instanceof ReflectionUnionType;
+        
+        if (is_null($property->getType()) || ($isReflectionName && $property->getType()->isBuiltin()) || $isReflectionUnionType) {
+            $this->setProperty($property, $value);
+        } else {
+            if ($value instanceof \UnitEnum) {
+                $buildClass = $value;
             } else {
                 $buildClass = call_user_func_array([$property->getType()->getName(), 'create'], [$value]);
-                $this->setProperty($property, $buildClass);
             }
+            $this->setProperty($property, $buildClass);
         }
     }
 
@@ -72,10 +85,19 @@ trait CastProperty
 
         foreach ($this->getReflectionProperties() as $property) {
             $propertyName = $property->getName();
-            if (is_null($property->getType()) || $property->getType()?->isBuiltin()) {
-                $properties[str($propertyName)->snake()->toString()] = $this->getProperty($property);
+            $propertyNameSnake = str($propertyName)->snake()->toString();
+            
+            $isReflectionName = $property->getType() instanceof ReflectionNamedType;
+            $isReflectionUnionType = $property->getType() instanceof ReflectionUnionType;
+
+            if (is_null($property->getType()) || ($isReflectionName && $property->getType()->isBuiltin()) || $isReflectionUnionType) {
+                $properties[$propertyNameSnake] = $this->getProperty($property);
             } else {
-                $properties[str($propertyName)->snake()->toString()] = $property->getValue($this)->toArray();
+                if ($property->getValue($this) instanceof \UnitEnum) {
+                    $properties[$propertyNameSnake] = $property->getValue($this)->value;
+                } else {
+                    $properties[$propertyNameSnake] = $property->getValue($this)?->toArray();
+                }
             }
         }
 
@@ -86,4 +108,5 @@ trait CastProperty
     {
         return json_encode($this->toArray(), $options);
     }
+
 }
