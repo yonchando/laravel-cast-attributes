@@ -11,7 +11,7 @@ class CastAttributes implements Arrayable, BaseCastsAttributes, Jsonable
 {
     use CastProperty;
 
-    public function get($model, string $key, $value, array $attributes): ?self
+    public function get($model, string $key, $value, array $attributes): ?static
     {
         if (is_null($value)) {
             return null;
