@@ -5,6 +5,8 @@
 
 Laravel cast attribute is model custom cast json column to Class entity 
 
+> ***IMPORTANT*** property is not primitive (User-Define Type), The User-Define type need to have default value to property.
+
 ## Installation
 
 Via Composer
